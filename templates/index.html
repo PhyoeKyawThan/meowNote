@@ -1,0 +1,27 @@
+{% extends 'sketch.html' %}
+{% block title %}Just For Us{% endblock %}
+{% block linkCss %}<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">{% endblock %}
+{% block contents %}
+
+<div class="container">
+    <div class="text-center"><img src="{{ url_for('static', filename='images/icons8-loading-heart.gif') }}" class="img" alt="heart-shape" srcset=""></div>
+    <h3 class="text-center">Meow and Me</h3>
+    
+    <div class="text-center">
+        <form method="post">
+            <div class="form-group">
+                <input type="text" name="name" class="name" placeholder="Name">
+                <input type="text" name="text" placeholder="What's on your mind...." class="form-control-sm pt-1 pb-2">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+
+        <div id="texts" class="mt-5">
+            <p class="pt-2 pb-2">Hello</p>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'sketch.html' %}
+{% block title %}SelectOne{% endblock %}
+
+{% block contents %}
+    <div class="container">
+        {% for x in showalert %}
+        <h3>{{ x }}</h3>
+        {% endfor %}
+        <a href="/show" class="btn btn-primary">LOOK</a>
+        <a href="/index" class="btn btn-primary">Add new</a>
+    </div>
+{% endblock %}
