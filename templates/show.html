@@ -2,5 +2,25 @@
 {% block title %}OurWold{% endblock %}
 
 {% block contents %}
-    
+<h1 class="text-warning text-center">Welcome from ours ♡</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for data in datas %}
+            <div class="
+            col-6
+            border border-info 
+            ms-2 
+            rounded-top rounded-bottom
+            mb-3
+        
+            " onclick="showDatas()">
+            <small class="text-info">{{ data[0] }}</small>
+            <div class="pt-3 pb-2">{{ data[1] }}</div>
+        </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
+<script>
+    alert("hello");
+</script>

@@ -5,39 +5,45 @@ app = Flask(__name__)
 connect = sqlite3.connect("minds.db", check_same_thread=False)
 cursor = connect.cursor()
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS texts(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL,texts TEXT NOT NULL)''')
-datas = cursor.execute("SELECT * FROM texts")
-check_datas = []
+cursor.execute('''CREATE TABLE IF NOT EXISTS texts(name TEXT NOT NULL,texts TEXT NOT NULL)''')
 
-for data in datas:
-    add_ = (data[1], data[2])
-    check_datas.append(add_)
-
+@app.route('/view')
+def view():
+    return f'h1'
 
 @app.route('/')
 def index():
-    datas = cursor.execute("SELECT * FROM texts")
-    return render_template('main.html', showalert=datas)
+    alert = "Added successful!!!!"
+    return render_template('main.html', alertxt=alert)
 
 @app.route('/index', methods=["POST", "GET"])
 def add_minds():
+    txt = ""
     if request.method == 'POST':
         name = request.form['name']
         text = request.form['text']
         data = (name, text)
-        if (name, text) not in check_datas:
-            cursor.execute("INSERT INTO texts(name, texts) VALUES(?, ?)", data)
-            connect.commit()
-        alertxt = "Written, Successful <3"
-        return redirect(url_for('index'))
+        check = ('', '')
 
+        if data==check:
+            txt = "Must not be empty value!!"
+            return render_template('index.html', alertxt=txt)
+        else:
+            if data in cursor.execute("SELECT * FROM texts"):
+                txt = "Already added!!!"
+                return render_template('index.html',  alertxt=txt)
+            else:
+                cursor.execute("INSERT INTO texts(name, texts) VALUES(?, ?)", data)
+                connect.commit()
+                return redirect(url_for('index'))
     else:
         return render_template('index.html')
 
 
 @app.route('/show')
 def show_data():
-    return render_template('show.html')
+    datas = cursor.execute("SELECT * FROM texts")
+    return render_template('show.html', datas=datas)
 
 if __name__ == '__main__':
     app.run(debug=True)

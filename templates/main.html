@@ -1,12 +1,11 @@
 {% extends 'sketch.html' %}
 {% block title %}SelectOne{% endblock %}
 
+<!--Show alert shoealert-->
 {% block contents %}
-    <div class="container">
-        {% for x in showalert %}
-        <h3>{{ x }}</h3>
-        {% endfor %}
-        <a href="/show" class="btn btn-primary">LOOK</a>
-        <a href="/index" class="btn btn-primary">Add new</a>
+    <!-- <div class="alert alert-info text-center text-info" role="alert">{{ alertxt }}</div> -->
+    <div class="container text-center">
+        <a href="/show" class="mt-5 btn btn-info mb-5" style="color: white;display: block;">LOOK</a>
+        <a href="/index" class="btn btn-primary" style="display: block;">Add new</a>
     </div>
 {% endblock %}
